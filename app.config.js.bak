@@ -1,0 +1,93 @@
+import 'dotenv/config';
+
+export default {
+  expo: {
+    name: process.env.APP_NAME || 'CiX Luxury',
+    slug: 'cix-luxury-app',
+    version: process.env.APP_VERSION || '1.0.0',
+    orientation: 'portrait',
+    icon: './assets/icon.png',
+    userInterfaceStyle: 'light',
+    splash: {
+      image: './assets/splash.png',
+      resizeMode: 'contain',
+      backgroundColor: '#ffffff'
+    },
+    assetBundlePatterns: [
+      '**/*'
+    ],
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: 'com.cixluxury.app',
+      buildNumber: '1.0.0',
+      infoPlist: {
+        NSCameraUsageDescription: 'This app uses the camera for virtual try-on and profile photos.',
+        NSPhotoLibraryUsageDescription: 'This app accesses your photo library for profile pictures and product images.',
+        NSLocationWhenInUseUsageDescription: 'This app uses location for delivery address verification.'
+      }
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: './assets/adaptive-icon.png',
+        backgroundColor: '#FFFFFF'
+      },
+      package: 'com.cixluxury.app',
+      versionCode: 1,
+      permissions: [
+        'CAMERA',
+        'READ_EXTERNAL_STORAGE',
+        'WRITE_EXTERNAL_STORAGE',
+        'ACCESS_FINE_LOCATION',
+        'ACCESS_COARSE_LOCATION'
+      ]
+    },
+    web: {
+      favicon: './assets/favicon.png',
+      bundler: 'metro'
+    },
+    plugins: [
+      'expo-camera',
+      'expo-image-picker',
+      'expo-notifications',
+              [
+          'expo-build-properties',
+          {
+            ios: {
+              deploymentTarget: '15.1'
+            },
+            android: {
+              compileSdkVersion: 33,
+              targetSdkVersion: 33,
+              buildToolsVersion: '33.0.0'
+            }
+          }
+        ]
+    ],
+    extra: {
+      apiUrl: process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001/api/v1',
+      supabaseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL,
+      supabaseAnonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
+      stripePublishableKey: process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+      eas: {
+        projectId: 'your-eas-project-id'
+      }
+    },
+    updates: {
+      url: 'https://u.expo.dev/your-project-id'
+    },
+    runtimeVersion: {
+      policy: 'appVersion'
+    },
+    hooks: {
+      postPublish: [
+        {
+          file: 'sentry-expo/upload-sourcemaps',
+          config: {
+            organization: 'your-sentry-org',
+            project: 'cix-luxury-app'
+          }
+        }
+      ]
+    }
+  }
+};
