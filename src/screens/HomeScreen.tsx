@@ -107,7 +107,7 @@ export default function HomeScreen({ navigation }: any) {
               onPress={() => navigation.navigate('Shop', { collection: collection.title })}
             >
               {collection.image ? (
-                <Image source={{ uri: collection.image }} style={styles.collectionImage} />
+              <Image source={{ uri: collection.image }} style={styles.collectionImage} />
               ) : (
                 <View style={[styles.collectionImage, styles.placeholderImage]}>
                   <Ionicons name="image-outline" size={32} color={COLORS.textLight} />

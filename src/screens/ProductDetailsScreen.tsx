@@ -105,7 +105,7 @@ export default function ProductDetailsScreen({ navigation, route }: ProductDetai
             onPress={() => handleImagePress(0)}
           >
             {product.images[0] ? (
-              <Image source={{ uri: product.images[0] }} style={styles.image} />
+            <Image source={{ uri: product.images[0] }} style={styles.image} />
             ) : (
               <View style={[styles.image, styles.placeholderImage]}>
                 <Ionicons name="image-outline" size={48} color={COLORS.textLight} />
@@ -124,7 +124,7 @@ export default function ProductDetailsScreen({ navigation, route }: ProductDetai
                 onPress={() => handleImagePress(index)}
               >
                 {image ? (
-                  <Image source={{ uri: image }} style={styles.thumbnailImage} />
+                <Image source={{ uri: image }} style={styles.thumbnailImage} />
                 ) : (
                   <View style={[styles.thumbnailImage, styles.placeholderImage]}>
                     <Ionicons name="image-outline" size={16} color={COLORS.textLight} />
